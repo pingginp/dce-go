@@ -8,3 +8,5 @@ dce/executor
 executor
 .gitmodules
 paypal-plugins/
+*-plugins
+dce.out

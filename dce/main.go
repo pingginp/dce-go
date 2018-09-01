@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package main
+package dce
 
 import (
 	"bytes"
@@ -33,8 +33,7 @@ import (
 	"github.com/paypal/dce-go/config"
 	"github.com/paypal/dce-go/dce/monitor"
 	"github.com/paypal/dce-go/plugin"
-	_ "github.com/paypal/dce-go/plugin/example"
-	_ "github.com/paypal/dce-go/plugin/general"
+
 	"github.com/paypal/dce-go/types"
 	"github.com/paypal/dce-go/utils"
 	fileUtils "github.com/paypal/dce-go/utils/file"
@@ -350,7 +349,8 @@ func init() {
 	}
 }
 
-func main() {
+// Run starts dce-go
+func Run() {
 	log.SetOutput(config.CreateFileAppendMode(types.DCE_OUT))
 
 	log.Println("====================Genesis Executor (Go)====================")
@@ -374,6 +374,7 @@ func main() {
 	driver, err := exec.NewMesosExecutorDriver(dConfig)
 	if err != nil {
 		log.Errorf("Unable to create a ExecutorDriver : %v\n", err.Error())
+		return
 	}
 
 	_, err = driver.Start()
